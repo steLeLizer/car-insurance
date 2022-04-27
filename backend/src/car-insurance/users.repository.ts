@@ -27,4 +27,8 @@ export class UsersRepository {
   ): Promise<User> {
     return this.userModel.findOneAndUpdate(userFilterQuery, user);
   }
+
+  async remove(user: User): Promise<User> {
+    return this.userModel.remove(user);
+  }
 }

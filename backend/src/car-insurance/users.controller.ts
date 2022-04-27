@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Delete,
+} from '@nestjs/common';
+import { CreateUserInterface } from './interfaces/create-user.interface';
+import { UpdateUserInterface } from './interfaces/update-user.interface';
 
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
@@ -20,18 +28,25 @@ export class UsersController {
   }
 
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
+  async createUser(
+    @Body() createUserInterface: CreateUserInterface,
+  ): Promise<User> {
     return this.usersService.createUser(
-      createUserDto.email,
-      createUserDto.password,
+      createUserInterface.email,
+      createUserInterface.password,
     );
   }
 
   @Patch(':userId')
   async updateUser(
     @Param('userId') userId: string,
-    @Body() updateUserDto: UpdateUserDto,
+    @Body() updateUserInterface: UpdateUserInterface,
   ): Promise<User> {
-    return this.usersService.updateUser(userId, updateUserDto);
+    return this.usersService.updateUser(userId, updateUserInterface);
+  }
+
+  @Delete(':userId')
+  async deleteUser(@Param('userId') userId: string): Promise<User> {
+    return this.usersService.deleteUser(userId);
   }
 }

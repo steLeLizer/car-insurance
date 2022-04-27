@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserInterface } from './interfaces/update-user.interface';
 
 import { User } from './schemas/user.schema';
 import { UsersRepository } from './users.repository';
@@ -10,6 +10,12 @@ export class UsersService {
   constructor(private readonly usersRepository: UsersRepository) {}
 
   async getUserById(userId: string): Promise<User> {
+    if (!(await this.usersRepository.findOne({ userId }))) {
+      throw new HttpException(
+        { message: 'User not found.' },
+        HttpStatus.NOT_FOUND,
+      );
+    }
     return this.usersRepository.findOne({ userId });
   }
 
@@ -18,6 +24,12 @@ export class UsersService {
   }
 
   async createUser(email: string, password: string): Promise<User> {
+    if (await this.usersRepository.findOne({ email })) {
+      throw new HttpException(
+        { message: 'User already exists.' },
+        HttpStatus.CONFLICT,
+      );
+    }
     return this.usersRepository.create({
       userId: uuidv4(),
       email,
@@ -25,7 +37,27 @@ export class UsersService {
     });
   }
 
-  async updateUser(userId: string, userUpdates: UpdateUserDto): Promise<User> {
+  async updateUser(
+    userId: string,
+    userUpdates: UpdateUserInterface,
+  ): Promise<User> {
+    if (!(await this.usersRepository.findOne({ userId }))) {
+      throw new HttpException(
+        { message: 'User not found.' },
+        HttpStatus.NOT_FOUND,
+      );
+    }
     return this.usersRepository.findOneAndUpdate({ userId }, userUpdates);
+  }
+
+  async deleteUser(userId: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ userId });
+    if (!user) {
+      throw new HttpException(
+        { message: 'User not found.' },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+    return this.usersRepository.remove(user);
   }
 }
