@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { UpdateUserInterface } from './interfaces/update-user.interface';
+import { UpdateUserInterface } from './interfaces';
 
 import { User } from './schemas/user.schema';
 import { UsersRepository } from './users.repository';
@@ -17,6 +17,10 @@ export class UsersService {
       );
     }
     return this.usersRepository.findOne({ userId });
+  }
+
+  async getUserByEmail(email: string): Promise<User> {
+    return this.usersRepository.findOne({ email });
   }
 
   async getUsers(): Promise<User[]> {

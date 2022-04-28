@@ -7,8 +7,7 @@ import {
   Post,
   Delete,
 } from '@nestjs/common';
-import { CreateUserInterface } from './interfaces/create-user.interface';
-import { UpdateUserInterface } from './interfaces/update-user.interface';
+import { CreateUserInterface, UpdateUserInterface } from './interfaces';
 
 import { User } from './schemas/user.schema';
 import { UsersService } from './users.service';
