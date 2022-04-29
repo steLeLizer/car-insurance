@@ -2,15 +2,13 @@ import {
   ConflictException,
   ForbiddenException,
   Injectable,
-  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthenticationDto } from './dto';
-import { UsersService } from '../car-insurance/users.service';
+import { AuthenticationDto } from '../dto';
+import { UsersService } from '../../car-insurance-db/services';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { TokensType } from './types';
-import { hash } from 'bcrypt';
+import { TokensType } from '../types';
 
 @Injectable()
 export class AuthenticationService {
@@ -27,7 +25,10 @@ export class AuthenticationService {
 
     if (user) throw new ConflictException('User already exists.');
 
-    const newUser = await this.usersService.createUser(email, hash);
+    const newUser = await this.usersService.createUser({
+      email,
+      password: hash,
+    });
 
     const tokens = await this.signUser(newUser.userId, newUser.email);
     await this.updateRefreshTokenHash(newUser.userId, tokens.refreshToken);
@@ -52,18 +53,16 @@ export class AuthenticationService {
   async logout(userId: string) {
     const user = await this.usersService.getUserById(userId);
 
-    if (!user || !user.hashedRefreshToken) return;
+    if (!user.hashedRefreshToken) return;
 
     return await this.updateRefreshTokenHash(userId, null);
   }
 
   async refreshTokens(userId: string, refreshToken: string) {
-    console.log(userId);
     const user = await this.usersService.getUserById(userId);
 
-    if (!user) throw new ForbiddenException('Access denied.');
-
-    console.log(refreshToken);
+    if (!user.hashedRefreshToken)
+      throw new ForbiddenException('Access denied.');
 
     const refreshTokenMatches = await bcrypt.compare(
       refreshToken,

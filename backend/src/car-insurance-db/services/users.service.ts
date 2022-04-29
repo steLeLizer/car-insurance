@@ -4,10 +4,10 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { UpdateUserInterface } from './interfaces';
+import { CreateUserInterface, UpdateUserInterface } from '../interfaces';
 
-import { User } from './schemas/user.schema';
-import { UsersRepository } from './users.repository';
+import { User } from '../schemas';
+import { UsersRepository } from '../repositories';
 
 @Injectable()
 export class UsersService {
@@ -28,7 +28,9 @@ export class UsersService {
     return this.usersRepository.find({});
   }
 
-  async createUser(email: string, password: string): Promise<User> {
+  async createUser(body: CreateUserInterface): Promise<User> {
+    const { email, password } = body;
+
     if (await this.usersRepository.findOne({ email }))
       throw new ConflictException('User already exists.');
 
@@ -48,13 +50,5 @@ export class UsersService {
       throw new NotFoundException('User not found.');
 
     return this.usersRepository.findOneAndUpdate({ userId }, userUpdates);
-  }
-
-  async deleteUser(userId: string): Promise<User> {
-    const user = await this.usersRepository.findOne({ userId });
-
-    if (!user) throw new NotFoundException('User not found.');
-
-    return this.usersRepository.remove(user);
   }
 }
