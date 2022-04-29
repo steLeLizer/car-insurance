@@ -3,25 +3,11 @@ import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
 import { CarInsuranceModule } from '../car-insurance/car-insurance.module';
 import { JwtModule } from '@nestjs/jwt';
-import { ConfigService } from '@nestjs/config';
-import { JwtStrategy } from './strategy/jwt.strategy';
+import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies';
 
 @Module({
-  imports: [
-    CarInsuranceModule,
-    JwtModule.registerAsync({
-      useFactory: (config: ConfigService) => {
-        return {
-          secret: config.get<string>('ACCESS_TOKEN_SECRET'),
-          signOptions: {
-            expiresIn: config.get<string | number>('ACCESS_TOKEN_EXPIRATION'),
-          },
-        };
-      },
-      inject: [ConfigService],
-    }),
-  ],
+  imports: [CarInsuranceModule, JwtModule.register({})],
   controllers: [AuthenticationController],
-  providers: [AuthenticationService, JwtStrategy],
+  providers: [AuthenticationService, AccessTokenStrategy, RefreshTokenStrategy],
 })
 export class AuthenticationModule {}

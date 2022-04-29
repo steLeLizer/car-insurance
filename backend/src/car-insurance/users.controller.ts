@@ -39,9 +39,9 @@ export class UsersController {
   @Patch(':userId')
   async updateUser(
     @Param('userId') userId: string,
-    @Body() updateUserInterface: UpdateUserInterface,
+    @Body() updateUserBody: UpdateUserInterface,
   ): Promise<User> {
-    return this.usersService.updateUser(userId, updateUserInterface);
+    return this.usersService.updateUser(userId, updateUserBody);
   }
 
   @Delete(':userId')
