@@ -11,7 +11,7 @@ import { AuthenticationDto } from '../dto';
 import { TokensType } from '../types';
 import {
   GetCurrentUser,
-  GetCurrentUserById,
+  GetCurrentUserId,
   Public,
   RefreshTokenGuard,
 } from '../../utils';
@@ -36,7 +36,7 @@ export class AuthenticationController {
 
   @Post('logout')
   @HttpCode(HttpStatus.OK)
-  logout(@GetCurrentUserById() userId: string) {
+  logout(@GetCurrentUserId() userId: string) {
     return this.authenticationService.logout(userId);
   }
 
@@ -45,7 +45,7 @@ export class AuthenticationController {
   @Post('refresh')
   @HttpCode(HttpStatus.OK)
   refreshTokens(
-    @GetCurrentUserById() userId: string,
+    @GetCurrentUserId() userId: string,
     @GetCurrentUser('refreshToken') refreshToken: string,
   ) {
     return this.authenticationService.refreshTokens(userId, refreshToken);

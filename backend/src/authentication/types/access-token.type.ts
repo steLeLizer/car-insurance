@@ -1,4 +1,4 @@
 export type AccessTokenType = {
-  sub: string;
+  sub: number;
   email: string;
 };
