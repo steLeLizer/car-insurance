@@ -13,8 +13,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.DB_URI),
     ThrottlerModule.forRoot({
-      ttl: 60,
-      limit: 10,
+      ttl: Number(process.env.THROTTLER_TTL),
+      limit: Number(process.env.THROTTLER_LIMIT),
     }),
     CarInsuranceDbModule,
     AuthenticationModule,
