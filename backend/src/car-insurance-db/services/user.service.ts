@@ -7,34 +7,34 @@ import { v4 as uuidv4 } from 'uuid';
 import { CreateUserInterface, UpdateUserInterface } from '../interfaces';
 
 import { User } from '../schemas';
-import { UsersRepository } from '../repositories';
+import { UserRepository } from '../repositories';
 
 @Injectable()
-export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {}
+export class UserService {
+  constructor(private readonly userRepository: UserRepository) {}
 
   async getUserById(userId: string): Promise<User> {
-    if (!(await this.usersRepository.findOne({ userId })))
+    if (!(await this.userRepository.findOne({ userId })))
       throw new NotFoundException('User not found.');
 
-    return this.usersRepository.findOne({ userId });
+    return this.userRepository.findOne({ userId });
   }
 
   async getUserByEmail(email: string): Promise<User> {
-    return this.usersRepository.findOne({ email });
+    return this.userRepository.findOne({ email });
   }
 
   async getUsers(): Promise<User[]> {
-    return this.usersRepository.find({});
+    return this.userRepository.find({});
   }
 
   async createUser(body: CreateUserInterface): Promise<User> {
     const { email, password } = body;
 
-    if (await this.usersRepository.findOne({ email }))
+    if (await this.userRepository.findOne({ email }))
       throw new ConflictException('User already exists.');
 
-    return this.usersRepository.create({
+    return this.userRepository.create({
       userId: uuidv4(),
       email,
       password,
@@ -46,9 +46,9 @@ export class UsersService {
     userId: string,
     userUpdates: UpdateUserInterface,
   ): Promise<User> {
-    if (!(await this.usersRepository.findOne({ userId })))
+    if (!(await this.getUserById(userId)))
       throw new NotFoundException('User not found.');
 
-    return this.usersRepository.findOneAndUpdate({ userId }, userUpdates);
+    return this.userRepository.findOneAndUpdate({ userId }, userUpdates);
   }
 }

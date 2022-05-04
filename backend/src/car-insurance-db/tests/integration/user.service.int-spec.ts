@@ -1,7 +1,7 @@
-import { UsersRepository } from '../../repositories';
-import { UsersService } from '../../services';
+import { UserRepository } from '../../repositories';
+import { UserService } from '../../services';
 import { AppModule } from '../../../app.module';
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../../schemas';
 
 const newUserMockData = {
@@ -12,32 +12,32 @@ const newUserMockData = {
 const hashedRefreshTokenMockData = 'hashedRefreshToken123$';
 
 describe('UserService Int', () => {
-  let usersRepository: UsersRepository;
-  let usersService: UsersService;
+  let userRepository: UserRepository;
+  let userService: UserService;
   let userForUpdate: User;
   let updatedUser: User;
 
   beforeAll(async () => {
-    const moduleRef = await Test.createTestingModule({
+    const moduleRef: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    usersRepository = moduleRef.get(UsersRepository);
-    usersService = moduleRef.get(UsersService);
-    await usersRepository.cleanDatabase();
+    userRepository = moduleRef.get(UserRepository);
+    userService = moduleRef.get(UserService);
+    await userRepository.cleanDatabase();
   });
 
   describe('createUser()', () => {
     it('should create user', async () => {
-      const newUser = await usersService.createUser(newUserMockData);
+      const newUser = await userService.createUser(newUserMockData);
       userForUpdate = newUser;
 
-      expect(newUser.email).toBe('test@gmail.com');
+      expect(newUser.email).toBe(newUserMockData.email);
     });
 
     it('should throw on duplicate email', async () => {
       try {
-        await usersService.createUser(newUserMockData);
+        await userService.createUser(newUserMockData);
       } catch (error) {
         expect(error.status).toBe(409);
       }
@@ -46,10 +46,10 @@ describe('UserService Int', () => {
 
   describe('updateUser()', () => {
     it('should update user', async () => {
-      await usersService.updateUser(userForUpdate.userId, {
+      await userService.updateUser(userForUpdate.userId, {
         hashedRefreshToken: hashedRefreshTokenMockData,
       });
-      updatedUser = await usersService.getUserById(userForUpdate.userId);
+      updatedUser = await userService.getUserById(userForUpdate.userId);
 
       expect(updatedUser.hashedRefreshToken).toBe(hashedRefreshTokenMockData);
     });
@@ -57,15 +57,15 @@ describe('UserService Int', () => {
 
   describe('getUsers()', () => {
     it('should get users', async () => {
-      const users = await usersService.getUsers();
+      const users = await userService.getUsers();
 
-      expect(users.toString()).toContain('test@gmail.com');
+      expect(users.toString()).toContain(newUserMockData.email);
     });
   });
 
   describe('getUserById()', () => {
     it('should get user by id', async () => {
-      const user = await usersService.getUserById(userForUpdate.userId);
+      const user = await userService.getUserById(userForUpdate.userId);
 
       expect(user.userId).toBe(userForUpdate.userId);
     });
@@ -73,7 +73,7 @@ describe('UserService Int', () => {
 
   describe('getUserByEmail()', () => {
     it('should get user by email', async () => {
-      const user = await usersService.getUserByEmail(userForUpdate.email);
+      const user = await userService.getUserByEmail(userForUpdate.email);
 
       expect(user.email).toBe(userForUpdate.email);
     });
