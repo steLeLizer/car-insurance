@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Car } from '../../schemas';
 
 const newCarMockData = {
-  name: 'Volkswagen',
+  name: 'VOLKSWAGEN',
   price: 300,
   percentage: 0.5,
 };
