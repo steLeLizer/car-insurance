@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, FilterQuery } from 'mongoose';
-import { v4 as uuidv4 } from 'uuid';
 
 import { User, UserDocument } from '../schemas';
 
 @Injectable()
-export class UsersRepository {
+export class UserRepository {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
     // this.cleanDatabase().then(() => {
     //   this.create({
