@@ -5,6 +5,8 @@ import { Car } from '../../schemas';
 
 const newCarMockData = {
   name: 'Volkswagen',
+  price: 300,
+  percentage: 0.5,
 };
 
 describe('CarService Int', () => {
