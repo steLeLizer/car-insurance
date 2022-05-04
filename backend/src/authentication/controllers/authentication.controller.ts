@@ -15,6 +15,7 @@ import {
   Public,
   RefreshTokenGuard,
 } from '../../utils';
+import { SkipThrottle } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthenticationController {
@@ -34,12 +35,14 @@ export class AuthenticationController {
     return this.authenticationService.login(dto);
   }
 
+  @SkipThrottle()
   @Post('logout')
   @HttpCode(HttpStatus.OK)
   logout(@GetCurrentUserId() userId: string) {
     return this.authenticationService.logout(userId);
   }
 
+  @SkipThrottle()
   @Public()
   @UseGuards(RefreshTokenGuard)
   @Post('refresh')
