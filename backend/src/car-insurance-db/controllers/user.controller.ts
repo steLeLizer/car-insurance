@@ -4,7 +4,7 @@ import { User } from '../schemas';
 import { UserService } from '../services';
 import { SkipThrottle } from '@nestjs/throttler';
 
-@Controller('users')
+@Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

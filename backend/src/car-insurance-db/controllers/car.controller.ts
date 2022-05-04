@@ -4,7 +4,7 @@ import { Car } from '../schemas';
 import { CarService } from '../services';
 import { SkipThrottle } from '@nestjs/throttler';
 
-@Controller('cars')
+@Controller('car')
 export class CarController {
   constructor(private readonly carService: CarService) {}
 
