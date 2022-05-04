@@ -10,6 +10,12 @@ export class Car {
 
   @Prop({ required: true, unique: true })
   name: string;
+
+  @Prop()
+  price: number;
+
+  @Prop()
+  percentage: number;
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);

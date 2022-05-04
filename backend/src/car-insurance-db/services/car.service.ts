@@ -29,7 +29,7 @@ export class CarService {
   }
 
   async createCar(body: CreateUpdateCarInterface): Promise<Car> {
-    const { name } = body;
+    const { name, price, percentage } = body;
 
     if (await this.getCarByName(name))
       throw new ConflictException('Car already exists.');
@@ -37,6 +37,8 @@ export class CarService {
     return this.carRepository.create({
       carId: uuidv4(),
       name,
+      price,
+      percentage,
     });
   }
 
