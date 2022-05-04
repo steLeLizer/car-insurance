@@ -39,4 +39,8 @@ export class CarService {
       name,
     });
   }
+
+  async cleanDatabase() {
+    return this.carRepository.cleanDatabase();
+  }
 }
