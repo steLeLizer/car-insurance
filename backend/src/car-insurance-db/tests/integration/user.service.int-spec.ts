@@ -1,4 +1,3 @@
-import { UserRepository } from '../../repositories';
 import { UserService } from '../../services';
 import { AppModule } from '../../../app.module';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -12,19 +11,22 @@ const newUserMockData = {
 const hashedRefreshTokenMockData = 'hashedRefreshToken123$';
 
 describe('UserService Int', () => {
-  let userRepository: UserRepository;
   let userService: UserService;
   let userForUpdate: User;
   let updatedUser: User;
+  let moduleRef: TestingModule;
 
   beforeAll(async () => {
-    const moduleRef: TestingModule = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    userRepository = moduleRef.get(UserRepository);
     userService = moduleRef.get(UserService);
-    await userRepository.cleanDatabase();
+    await userService.cleanDatabase();
+  });
+
+  afterAll(async () => {
+    await moduleRef.close();
   });
 
   describe('createUser()', () => {

@@ -1,4 +1,3 @@
-import { CarRepository } from '../../repositories';
 import { CarService } from '../../services';
 import { AppModule } from '../../../app.module';
 import { Test, TestingModule } from '@nestjs/testing';
@@ -9,18 +8,21 @@ const newCarMockData = {
 };
 
 describe('CarService Int', () => {
-  let carRepository: CarRepository;
   let carService: CarService;
   let newCar: Car;
+  let moduleRef: TestingModule;
 
   beforeAll(async () => {
-    const moduleRef: TestingModule = await Test.createTestingModule({
+    moduleRef = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    carRepository = moduleRef.get(CarRepository);
     carService = moduleRef.get(CarService);
-    await carRepository.cleanDatabase();
+    await carService.cleanDatabase();
+  });
+
+  afterAll(async () => {
+    await moduleRef.close();
   });
 
   describe('createCar()', () => {
