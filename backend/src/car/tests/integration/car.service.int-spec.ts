@@ -51,8 +51,8 @@ describe('CarService Int', () => {
     });
   });
 
-  describe('getUserById()', () => {
-    it('should get user by id', async () => {
+  describe('getCarById()', () => {
+    it('should get car by id', async () => {
       const car = await carService.getCarById(newCar.carId);
 
       expect(car.carId).toBe(newCar.carId);
@@ -60,7 +60,7 @@ describe('CarService Int', () => {
   });
 
   describe('getCarByName()', () => {
-    it('should get user by car', async () => {
+    it('should get car by name', async () => {
       const car = await carService.getCarByName(newCar.name);
 
       expect(car.name).toBe(newCar.name);

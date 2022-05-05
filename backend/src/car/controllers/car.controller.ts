@@ -29,7 +29,7 @@ export class CarController {
   @ApiOkResponse({ description: 'Get car' })
   @ApiNotFoundResponse({ description: 'Car not found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  async getUser(@Param('carId') carId: string): Promise<Car> {
+  async getCar(@Param('carId') carId: string): Promise<Car> {
     return this.carService.getCarById(carId);
   }
 }

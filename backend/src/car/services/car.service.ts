@@ -14,14 +14,15 @@ export class CarService {
   constructor(private readonly carRepository: CarRepository) {}
 
   async getCarById(carId: string): Promise<Car> {
-    if (!(await this.carRepository.findOne({ carId })))
-      throw new NotFoundException('Car not found');
+    const car = await this.carRepository.findOne({ carId });
 
-    return this.carRepository.findOne({ carId });
+    if (!car) throw new NotFoundException('Car not found');
+
+    return car;
   }
 
-  async getCarByName(car: string): Promise<Car> {
-    return this.carRepository.findOne({ car });
+  async getCarByName(name: string): Promise<Car> {
+    return this.carRepository.findOne({ name });
   }
 
   async getCars(): Promise<Car[]> {

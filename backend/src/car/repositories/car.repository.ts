@@ -8,12 +8,12 @@ import { Car, CarDocument } from '../schemas';
 export class CarRepository {
   constructor(@InjectModel(Car.name) private carModel: Model<CarDocument>) {}
 
-  async findOne(userFilterQuery: FilterQuery<Car>): Promise<Car> {
-    return this.carModel.findOne(userFilterQuery);
+  async findOne(carFilterQuery: FilterQuery<Car>): Promise<Car> {
+    return this.carModel.findOne(carFilterQuery);
   }
 
-  async find(userFilterQuery: FilterQuery<Car>): Promise<Car[]> {
-    return this.carModel.find(userFilterQuery);
+  async find(carsFilterQuery: FilterQuery<Car>): Promise<Car[]> {
+    return this.carModel.find(carsFilterQuery);
   }
 
   async create(car: Car): Promise<Car> {

@@ -14,10 +14,11 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   async getUserById(userId: string): Promise<User> {
-    if (!(await this.userRepository.findOne({ userId })))
-      throw new NotFoundException('User not found');
+    const user = await this.userRepository.findOne({ userId });
 
-    return this.userRepository.findOne({ userId });
+    if (!user) throw new NotFoundException('Car not found');
+
+    return user;
   }
 
   async getUserByEmail(email: string): Promise<User> {
