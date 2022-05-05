@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthenticationDto } from '../dto';
-import { UserService } from '../../car-insurance-db/services';
+import { UserService } from '../../user/services';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { TokensType } from '../types';

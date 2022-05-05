@@ -5,7 +5,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 
 import { AccessTokenGuard } from './utils';
-import { CarInsuranceDbModule } from './car-insurance-db/car-insurance-db.module';
+import { UserModule } from './user/user.module';
+import { CarModule } from './car/car.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 
 @Module({
@@ -16,7 +17,8 @@ import { AuthenticationModule } from './authentication/authentication.module';
       ttl: Number(process.env.THROTTLER_TTL),
       limit: Number(process.env.THROTTLER_LIMIT),
     }),
-    CarInsuranceDbModule,
+    UserModule,
+    CarModule,
     AuthenticationModule,
   ],
   providers: [

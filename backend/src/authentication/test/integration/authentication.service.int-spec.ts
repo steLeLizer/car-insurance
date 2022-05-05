@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthenticationService } from '../../services';
 import { AppModule } from '../../../app.module';
-import { UserService } from '../../../car-insurance-db/services';
+import { UserService } from '../../../user/services';
 import { TokensType } from '../../types';
-import { User } from '../../../car-insurance-db/schemas';
+import { User } from '../../../user/schemas';
 
 const userMockData = {
   email: 'auth.test@gmail.com',
