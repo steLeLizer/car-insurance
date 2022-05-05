@@ -15,7 +15,7 @@ export class UserService {
 
   async getUserById(userId: string): Promise<User> {
     if (!(await this.userRepository.findOne({ userId })))
-      throw new NotFoundException('User not found.');
+      throw new NotFoundException('User not found');
 
     return this.userRepository.findOne({ userId });
   }
@@ -32,7 +32,7 @@ export class UserService {
     const { email, password } = body;
 
     if (await this.userRepository.findOne({ email }))
-      throw new ConflictException('User already exists.');
+      throw new ConflictException('User already exists');
 
     return this.userRepository.create({
       userId: uuidv4(),
@@ -47,7 +47,7 @@ export class UserService {
     userUpdates: UpdateUserInterface,
   ): Promise<User> {
     if (!(await this.getUserById(userId)))
-      throw new NotFoundException('User not found.');
+      throw new NotFoundException('User not found');
 
     return this.userRepository.findOneAndUpdate({ userId }, userUpdates);
   }

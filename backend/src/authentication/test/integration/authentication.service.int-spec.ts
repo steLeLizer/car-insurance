@@ -93,13 +93,9 @@ describe('Authentication Flow', () => {
   });
 
   describe('logout', () => {
-    it('should not pass if call to non existent user', async () => {
-      let result;
-      try {
-        result = await authService.logout('');
-      } catch (error) {
-        expect(error.status).toBe(404);
-      }
+    it('should pass if call to non existent user', async () => {
+      const result = await authService.logout('');
+
       expect(result).toBeUndefined();
     });
 

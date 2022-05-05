@@ -16,36 +16,60 @@ import {
   RefreshTokenGuard,
 } from '../../utils';
 import { SkipThrottle } from '@nestjs/throttler';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiConflictResponse,
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthenticationController {
   constructor(private authenticationService: AuthenticationService) {}
 
-  @Public()
   @Post('register')
+  @Public()
+  @ApiBody({ type: AuthenticationDto })
+  @ApiCreatedResponse({
+    description: 'User registration',
+  })
+  @ApiConflictResponse({
+    description: 'User already exists',
+  })
   @HttpCode(HttpStatus.CREATED)
   register(@Body() dto: AuthenticationDto): Promise<TokensType> {
     return this.authenticationService.register(dto);
   }
 
-  @Public()
   @Post('login')
+  @Public()
+  @ApiBody({ type: AuthenticationDto })
+  @ApiOkResponse({ description: 'User login' })
+  @ApiUnauthorizedResponse({ description: 'Credentials incorrect' })
   @HttpCode(HttpStatus.OK)
   login(@Body() dto: AuthenticationDto): Promise<TokensType> {
     return this.authenticationService.login(dto);
   }
 
-  @SkipThrottle()
   @Post('logout')
+  @SkipThrottle()
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'User logout' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @HttpCode(HttpStatus.OK)
   logout(@GetCurrentUserId() userId: string) {
     return this.authenticationService.logout(userId);
   }
 
-  @SkipThrottle()
+  @Post('refresh')
   @Public()
   @UseGuards(RefreshTokenGuard)
-  @Post('refresh')
+  @SkipThrottle()
+  @ApiBearerAuth()
+  @ApiOkResponse({ description: 'Tokens refresh' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @HttpCode(HttpStatus.OK)
   refreshTokens(
     @GetCurrentUserId() userId: string,

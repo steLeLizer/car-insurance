@@ -15,7 +15,7 @@ export class CarService {
 
   async getCarById(carId: string): Promise<Car> {
     if (!(await this.carRepository.findOne({ carId })))
-      throw new NotFoundException('Car not found.');
+      throw new NotFoundException('Car not found');
 
     return this.carRepository.findOne({ carId });
   }
@@ -32,7 +32,7 @@ export class CarService {
     const { name, price, percentage } = body;
 
     if (await this.getCarByName(name))
-      throw new ConflictException('Car already exists.');
+      throw new ConflictException('Car already exists');
 
     return this.carRepository.create({
       carId: uuidv4(),
