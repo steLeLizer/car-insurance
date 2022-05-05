@@ -24,7 +24,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
       ?.replace('Bearer', '')
       .trim();
 
-    if (!refreshToken) throw new ForbiddenException('Refresh token malformed.');
+    if (!refreshToken) throw new ForbiddenException('Refresh token malformed');
 
     return {
       ...payload,

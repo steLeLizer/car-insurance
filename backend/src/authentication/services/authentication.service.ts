@@ -5,6 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { AuthenticationDto } from '../dto';
+import { UserRepository } from '../../user/repositories';
 import { UserService } from '../../user/services';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
@@ -13,6 +14,7 @@ import { TokensType } from '../types';
 @Injectable()
 export class AuthenticationService {
   constructor(
+    private readonly userRepository: UserRepository,
     private readonly userService: UserService,
     private jwtService: JwtService,
   ) {}
@@ -23,7 +25,7 @@ export class AuthenticationService {
     const hash = await this.hashData(password);
     const user = await this.userService.getUserByEmail(email);
 
-    if (user) throw new ConflictException('User already exists.');
+    if (user) throw new ConflictException('User already exists');
 
     const newUser = await this.userService.createUser({
       email,
@@ -40,10 +42,10 @@ export class AuthenticationService {
 
     const user = await this.userService.getUserByEmail(email);
 
-    if (!user) throw new UnauthorizedException('Credentials incorrect.');
+    if (!user) throw new UnauthorizedException('Credentials incorrect');
 
     if (!(await bcrypt.compare(password, user.password)))
-      throw new UnauthorizedException('Credentials incorrect.');
+      throw new UnauthorizedException('Credentials incorrect');
 
     const tokens = await this.signUser(user.userId, user.email);
     await this.updateRefreshTokenHash(user.userId, tokens.refreshToken);
@@ -51,25 +53,25 @@ export class AuthenticationService {
   }
 
   async logout(userId: string) {
-    const user = await this.userService.getUserById(userId);
+    const user = await this.userRepository.findOne({ userId });
 
-    if (!user.hashedRefreshToken) return;
+    if (user?.hashedRefreshToken)
+      return await this.updateRefreshTokenHash(userId, null);
 
-    return await this.updateRefreshTokenHash(userId, null);
+    return;
   }
 
   async refreshTokens(userId: string, refreshToken: string) {
     const user = await this.userService.getUserById(userId);
 
-    if (!user.hashedRefreshToken)
-      throw new ForbiddenException('Access denied.');
+    if (!user.hashedRefreshToken) throw new ForbiddenException('Access denied');
 
     const refreshTokenMatches = await bcrypt.compare(
       refreshToken,
       user.hashedRefreshToken,
     );
 
-    if (!refreshTokenMatches) throw new ForbiddenException('Access denied.');
+    if (!refreshTokenMatches) throw new ForbiddenException('Access denied');
 
     const tokens = await this.signUser(user.userId, user.email);
     await this.updateRefreshTokenHash(user.userId, tokens.refreshToken);
