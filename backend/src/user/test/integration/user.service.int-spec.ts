@@ -1,5 +1,7 @@
 import { UserService } from '../../services';
-import { AppModule } from '../../../app.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from '../../user.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../../schemas';
 
@@ -18,7 +20,11 @@ describe('UserService Int', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        ConfigModule.forRoot({ isGlobal: true }),
+        MongooseModule.forRoot(process.env.TEST_DB_URI),
+        UserModule,
+      ],
     }).compile();
 
     userService = moduleRef.get(UserService);

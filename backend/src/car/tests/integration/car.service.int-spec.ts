@@ -1,5 +1,7 @@
 import { CarService } from '../../services';
-import { AppModule } from '../../../app.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { CarModule } from '../../car.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Car } from '../../schemas';
 
@@ -16,7 +18,11 @@ describe('CarService Int', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        ConfigModule.forRoot({ isGlobal: true }),
+        MongooseModule.forRoot(process.env.TEST_DB_URI),
+        CarModule,
+      ],
     }).compile();
 
     carService = moduleRef.get(CarService);
