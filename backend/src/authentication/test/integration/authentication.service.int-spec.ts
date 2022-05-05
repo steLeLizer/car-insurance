@@ -1,6 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AuthenticationService } from '../../services';
-import { AppModule } from '../../../app.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
+import { UserModule } from '../../../user/user.module';
+import { AuthenticationModule } from '../../authentication.module';
 import { UserService } from '../../../user/services';
 import { TokensType } from '../../types';
 import { User } from '../../../user/schemas';
@@ -17,7 +20,12 @@ describe('Authentication Flow', () => {
 
   beforeAll(async () => {
     moduleRef = await Test.createTestingModule({
-      imports: [AppModule],
+      imports: [
+        ConfigModule.forRoot({ isGlobal: true }),
+        MongooseModule.forRoot(process.env.TEST_DB_URI),
+        UserModule,
+        AuthenticationModule,
+      ],
     }).compile();
 
     userService = moduleRef.get(UserService);
