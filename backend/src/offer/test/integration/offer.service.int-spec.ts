@@ -8,9 +8,12 @@ import { RuleService } from '../../../rule/services';
 import { CarService } from '../../../car/services';
 import { OfferModule } from '../../offer.module';
 
-const offerMockData = {};
+const computeCarInsuranceOfferMockData = {
+  carPrice: 300,
+  carUniversalPercentage: 0.5,
+};
 
-describe('Authentication Flow', () => {
+describe('Car Insurance Offer Calculation', () => {
   let ruleService: RuleService;
   let carService: CarService;
   let offerService: OfferService;
@@ -30,6 +33,12 @@ describe('Authentication Flow', () => {
     ruleService = moduleRef.get(RuleService);
     carService = moduleRef.get(CarService);
     offerService = moduleRef.get(OfferService);
+
+    await carService.cleanDatabase();
+    await ruleService.cleanDatabase();
+
+    // TODO
+    // create car and rule
   });
 
   afterAll(async () => {
@@ -37,7 +46,17 @@ describe('Authentication Flow', () => {
   });
 
   describe('computeCarInsuranceOffer()', () => {
-    it('', async () => {});
+    it('should return offer', async () => {
+      const result = await offerService.computeCarInsuranceOffer(
+        computeCarInsuranceOfferMockData.carPrice,
+        computeCarInsuranceOfferMockData.carUniversalPercentage,
+      );
+
+      expect(result.yearly.globalOffer).toEqual(300);
+      expect(result.yearly.universalOffer).toEqual(450);
+      expect(result.monthly.globalOffer).toEqual(25);
+      expect(result.monthly.universalOffer).toEqual(37.5);
+    });
   });
 
   describe('carInsuranceOffer()', () => {
