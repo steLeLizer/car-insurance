@@ -1,1 +1,1 @@
-export * from './create-update-car.interface';
+export * from './create-car.interface';

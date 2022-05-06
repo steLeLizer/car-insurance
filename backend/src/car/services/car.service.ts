@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-import { CreateUpdateCarInterface } from '../interfaces';
+import { CreateCarInterface } from '../interfaces';
 
 import { Car } from '../schemas';
 import { CarRepository } from '../repositories';
@@ -29,8 +29,8 @@ export class CarService {
     return this.carRepository.find({});
   }
 
-  async createCar(body: CreateUpdateCarInterface): Promise<Car> {
-    const { name, price, percentage } = body;
+  async createCar(body: CreateCarInterface): Promise<Car> {
+    const { name, price, percentage, highRisk } = body;
 
     if (await this.getCarByName(name))
       throw new ConflictException('Car already exists');
@@ -40,6 +40,7 @@ export class CarService {
       name,
       price,
       percentage,
+      highRisk,
     });
   }
 

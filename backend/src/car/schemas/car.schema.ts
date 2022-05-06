@@ -16,6 +16,9 @@ export class Car {
 
   @Prop()
   percentage: number;
+
+  @Prop()
+  highRisk: boolean;
 }
 
 export const CarSchema = SchemaFactory.createForClass(Car);

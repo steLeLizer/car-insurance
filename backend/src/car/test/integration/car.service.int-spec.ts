@@ -9,6 +9,7 @@ const newCarMockData = {
   name: 'VOLKSWAGEN',
   price: 300,
   percentage: 0.5,
+  highRisk: false,
 };
 
 describe('CarService Int', () => {
