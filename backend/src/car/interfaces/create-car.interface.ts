@@ -1,6 +1,6 @@
 export interface CreateCarInterface {
   name: string;
   price: number;
-  percentage: number;
+  universalPercentage: number;
   highRisk: boolean;
 }

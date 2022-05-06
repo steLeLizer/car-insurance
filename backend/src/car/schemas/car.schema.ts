@@ -15,7 +15,7 @@ export class Car {
   price: number;
 
   @Prop()
-  percentage: number;
+  universalPercentage: number;
 
   @Prop()
   highRisk: boolean;

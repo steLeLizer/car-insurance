@@ -14,7 +14,7 @@ import {
   GetCurrentUserId,
   Public,
   RefreshTokenGuard,
-} from '../../utils';
+} from '../../util';
 import { SkipThrottle } from '@nestjs/throttler';
 import {
   ApiBearerAuth,

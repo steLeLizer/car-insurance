@@ -9,5 +9,6 @@ import { CarRepository } from './repositories';
   imports: [MongooseModule.forFeature([{ name: Car.name, schema: CarSchema }])],
   controllers: [CarController],
   providers: [CarService, CarRepository],
+  exports: [CarService],
 })
 export class CarModule {}
