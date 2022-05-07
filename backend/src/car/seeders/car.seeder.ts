@@ -7,7 +7,7 @@ export class CarSeeder {
   constructor(private readonly carService: CarService) {}
 
   @Command({
-    command: 'seed:cars',
+    command: 'db:seed:cars',
     describe: 'seed cars',
   })
   async create() {

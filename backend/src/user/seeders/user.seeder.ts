@@ -11,7 +11,7 @@ export class UserSeeder {
   ) {}
 
   @Command({
-    command: 'seed:users',
+    command: 'db:seed:users',
     describe: 'seed users',
   })
   async create() {

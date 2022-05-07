@@ -13,7 +13,7 @@ export class AllSeeder {
   ) {}
 
   @Command({
-    command: 'seed:all',
+    command: 'db:seed:all',
     describe: 'seed all',
   })
   async create() {

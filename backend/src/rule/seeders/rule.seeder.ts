@@ -8,7 +8,7 @@ export class RuleSeeder {
   constructor(private readonly ruleService: RuleService) {}
 
   @Command({
-    command: 'seed:rules',
+    command: 'db:seed:rules',
     describe: 'seed rules',
   })
   async create() {
