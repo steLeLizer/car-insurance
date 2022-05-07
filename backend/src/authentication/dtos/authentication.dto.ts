@@ -7,7 +7,6 @@ export class AuthenticationDto {
   @IsEmail()
   @ApiProperty({
     type: String,
-    description: 'email',
   })
   email: string;
 
@@ -16,7 +15,6 @@ export class AuthenticationDto {
   @MinLength(5)
   @ApiProperty({
     type: String,
-    description: 'password',
   })
   password: string;
 }

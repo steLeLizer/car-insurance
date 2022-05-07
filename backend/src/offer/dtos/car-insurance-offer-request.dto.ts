@@ -7,7 +7,6 @@ export class CarInsuranceOfferRequestDto {
   @IsString()
   @ApiProperty({
     type: String,
-    description: 'ruleType',
   })
   ruleType: RuleTypeEnum;
 
@@ -15,7 +14,6 @@ export class CarInsuranceOfferRequestDto {
   @IsNumber()
   @ApiProperty({
     type: Number,
-    description: 'driverAge',
   })
   driverAge?: number;
 
@@ -23,7 +21,6 @@ export class CarInsuranceOfferRequestDto {
   @IsString()
   @ApiProperty({
     type: String,
-    description: 'carName',
   })
   carName?: string;
 
@@ -31,7 +28,6 @@ export class CarInsuranceOfferRequestDto {
   @IsNumber()
   @ApiProperty({
     type: Number,
-    description: 'purchasePrice',
   })
   purchasePrice?: number;
 }
