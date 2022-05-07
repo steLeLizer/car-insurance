@@ -7,8 +7,9 @@ import { AuthenticationModule } from '../../authentication.module';
 import { UserService } from '../../../user/services';
 import { TokensType } from '../../types';
 import { User } from '../../../user/schemas';
+import { AuthenticationDto } from '../../dto';
 
-const userMockData = {
+const userMockData: AuthenticationDto = {
   email: 'auth.test@gmail.com',
   password: 'superSecretPassword123$',
 };

@@ -4,10 +4,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerModule } from '@nestjs/throttler';
 
-import { AccessTokenGuard } from './utils';
+import { AccessTokenGuard } from './util';
 import { UserModule } from './user/user.module';
 import { CarModule } from './car/car.module';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { RuleModule } from './rule/rule.module';
+import { OfferModule } from './offer/offer.module';
 
 @Module({
   imports: [
@@ -18,8 +20,10 @@ import { AuthenticationModule } from './authentication/authentication.module';
       limit: Number(process.env.THROTTLER_LIMIT),
     }),
     UserModule,
-    CarModule,
     AuthenticationModule,
+    CarModule,
+    RuleModule,
+    OfferModule,
   ],
   providers: [
     {
