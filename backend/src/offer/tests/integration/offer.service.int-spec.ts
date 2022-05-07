@@ -10,7 +10,7 @@ import { OfferModule } from '../../offer.module';
 import { CreateCarInterface } from '../../../car/interfaces';
 import { CreateRuleInterface } from '../../../rule/interfaces';
 import { RuleTypeEnum } from '../../../rule/enums';
-import { CarInsuranceOfferRequestDto } from '../../dto';
+import { CarInsuranceOfferRequestDto } from '../../dtos';
 
 const computeCarInsuranceOfferMockData = {
   carPrice: 300,

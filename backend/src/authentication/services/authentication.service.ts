@@ -4,7 +4,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthenticationDto } from '../dto';
+import { AuthenticationDto } from '../dtos';
 import { UserRepository } from '../../user/repositories';
 import { UserService } from '../../user/services';
 import { JwtService } from '@nestjs/jwt';

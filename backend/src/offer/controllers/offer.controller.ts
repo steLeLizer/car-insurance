@@ -9,9 +9,9 @@ import {
   ApiNotFoundResponse,
   ApiConflictResponse,
 } from '@nestjs/swagger';
-import { CarInsuranceOfferRequestDto } from '../dto';
+import { CarInsuranceOfferRequestDto } from '../dtos';
 
-@Controller('offer')
+@Controller('offers')
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
 

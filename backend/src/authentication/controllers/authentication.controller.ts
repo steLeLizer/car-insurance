@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { AuthenticationService } from '../services';
-import { AuthenticationDto } from '../dto';
+import { AuthenticationDto } from '../dtos';
 import { TokensType } from '../types';
 import {
   GetCurrentUser,
@@ -25,7 +25,7 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
-@Controller('auth')
+@Controller('authentication')
 export class AuthenticationController {
   constructor(private authenticationService: AuthenticationService) {}
 
@@ -63,7 +63,7 @@ export class AuthenticationController {
     return this.authenticationService.logout(userId);
   }
 
-  @Post('refresh')
+  @Post('refresh-tokens')
   @Public()
   @UseGuards(RefreshTokenGuard)
   @SkipThrottle()

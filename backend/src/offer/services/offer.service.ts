@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { RuleService } from '../../rule/services';
-import { CarInsuranceOfferRequestDto } from '../dto';
+import { CarInsuranceOfferRequestDto } from '../dtos';
 import { CarService } from '../../car/services';
 import { CarInsuranceOfferResponseInterface } from '../interfaces';
 
