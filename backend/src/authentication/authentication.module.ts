@@ -9,5 +9,6 @@ import { AccessTokenStrategy, RefreshTokenStrategy } from './strategies';
   imports: [UserModule, JwtModule.register({})],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, AccessTokenStrategy, RefreshTokenStrategy],
+  exports: [AuthenticationService],
 })
 export class AuthenticationModule {}
