@@ -10,6 +10,7 @@ import { CarModule } from './car/car.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { RuleModule } from './rule/rule.module';
 import { OfferModule } from './offer/offer.module';
+import { SeederModule } from './shared/seeder.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { OfferModule } from './offer/offer.module';
     CarModule,
     RuleModule,
     OfferModule,
+    SeederModule,
   ],
   providers: [
     {
