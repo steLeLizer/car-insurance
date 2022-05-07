@@ -5,8 +5,9 @@ import { RuleModule } from '../../rule.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Rule } from '../../schemas';
 import { RuleTypeEnum } from '../../enums';
+import { CreateRuleInterface } from '../../interfaces';
 
-const newRuleMockData = {
+const newRuleMockData: CreateRuleInterface = {
   type: RuleTypeEnum.Car,
   priceMin: 5000,
   driverAgeMin: 18,

@@ -4,8 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from '../../user.module';
 import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../../schemas';
+import { CreateUserInterface } from '../../interfaces';
 
-const newUserMockData = {
+const newUserMockData: CreateUserInterface = {
   email: 'test@gmail.com',
   password: 'Test123$',
 };
