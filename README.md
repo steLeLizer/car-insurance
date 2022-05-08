@@ -5,6 +5,7 @@ It is about getting the price for an insurance product, based on specific parame
 ## Description
 
 There are four steps:
+
 * Step 1: Log-in
 * Step 2: Fill-in the parameters
 * Step 3: Compute the pricing & verify the request complies with the underwriting rules
@@ -26,20 +27,21 @@ There are four steps:
 ### Executing the app
 
 * .env file content example for running the app locally:
-  * PORT=3000
-  *  DB_URI='mongodb://car_insurance_database/car-insurance'
-  *  TEST_DB_URI='mongodb://localhost/car-insurance-test'
-  *  ACCESS_TOKEN_SECRET='accessTokenSecret123$'
-  *  REFRESH_TOKEN_SECRET='refreshTokenSecret123$'
-  *  ACCESS_TOKEN_EXPIRATION='12h'
-  *  REFRESH_TOKEN_EXPIRATION='1d'
-  *  BCRYPT_SALT_ROUNDS=10
-  *  THROTTLER_TTL=60
-  *  THROTTLER_LIMIT=10
+    * PORT=3000
+    * DB_URI='mongodb://car_insurance_database/car-insurance'
+    * TEST_DB_URI='mongodb://localhost/car-insurance-test'
+    * ACCESS_TOKEN_SECRET='accessTokenSecret123$'
+    * REFRESH_TOKEN_SECRET='refreshTokenSecret123$'
+    * ACCESS_TOKEN_EXPIRATION='12h'
+    * REFRESH_TOKEN_EXPIRATION='1d'
+    * BCRYPT_SALT_ROUNDS=10
+    * THROTTLER_TTL=60
+    * THROTTLER_LIMIT=10
 
 #### Commands
 
 * Run the app
+
 ```
 cd backend/
 docker-compose build
@@ -48,6 +50,8 @@ docker-compose up -d
 
 * Run tests
     * Note: In order to run tests, you need to install Node.js on your machine
+    * Note: For manual testing, swagger route - /api
+
 ```
 cd backend/
 npm test
