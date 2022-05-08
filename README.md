@@ -26,7 +26,7 @@ There are four steps:
 
 ### Executing the app
 
-* .env file content example for running the app locally:
+* .env file content example for running backend locally:
     * PORT=3001
     * DB_URI='mongodb://car_insurance_database/car-insurance'
     * TEST_DB_URI='mongodb://localhost/car-insurance-test'
@@ -40,7 +40,7 @@ There are four steps:
 
 #### Commands
 
-* Run the app
+* Run backend
 
 ```
 cd backend/
@@ -48,9 +48,9 @@ docker-compose build
 docker-compose up -d
 ```
 
-* Run tests
-    * Note: In order to run tests, you need to install Node.js on your machine
-    * Note: For manual testing, swagger route - /api
+* Run backend tests
+    * Note: In order to run tests, you will need to install Node.js on your machine
+    * Note: For manual testing, Swagger route - /api
 
 ```
 cd backend/
