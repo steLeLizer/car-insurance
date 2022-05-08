@@ -23,7 +23,7 @@ There are four steps:
 
 [comment]: <> (* Any modifications needed to be made to files/folders)
 
-### Executing program
+### Executing the app
 
 * .env file content example for running the app locally:
   * PORT=3000
