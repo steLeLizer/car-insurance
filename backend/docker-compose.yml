@@ -1,8 +1,8 @@
 version: '4'
 
 services:
-  car_insurance_db:
-    container_name: car_insurance_db
+  car_insurance_database:
+    container_name: car_insurance_database
     image: mongo:5.0
     ports:
       - 27017:27017
@@ -10,14 +10,13 @@ services:
 
   car_insurance_backend:
     depends_on:
-      - car_insurance_db
+      - car_insurance_database
     container_name: car_insurance_backend
     image: node:16
     build:
-      dockerfile: src/Dockerfile
+      dockerfile: Dockerfile
       context: .
     environment:
-      NODE_ENV: 'development'
       PORT: ${PORT}
       DB_URI: ${DB_URI}
       TEST_DB_URI: ${TEST_DB_URI}
