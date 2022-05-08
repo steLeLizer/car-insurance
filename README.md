@@ -4,7 +4,7 @@ It is about getting the price for an insurance product, based on specific parame
 
 ## Description
 
-There are four steps to in the process:
+There are four steps:
 * Step 1: Log-in
 * Step 2: Fill-in the parameters
 * Step 3: Compute the pricing & verify the request complies with the underwriting rules
