@@ -20,7 +20,7 @@ export class UserSeeder {
     const password = await this.authenticationService.hashData('Ninja');
 
     await this.userService.createUser({
-      email: 'qover@gmail.com',
+      email: 'user@qover.com',
       password,
     });
   }
