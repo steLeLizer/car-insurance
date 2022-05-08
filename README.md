@@ -67,6 +67,11 @@ npm test
 
 [comment]: <> (```)
 
+## Login credentials
+
+* Email: user@qover.com
+* Password: Ninja
+
 ## Authors
 
 Contributor names and contact info
