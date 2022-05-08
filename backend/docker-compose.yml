@@ -1,0 +1,37 @@
+version: '4'
+
+services:
+  car_insurance_database:
+    container_name: car_insurance_database
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    tty: true
+
+  car_insurance_backend:
+    depends_on:
+      - car_insurance_database
+    container_name: car_insurance_backend
+    image: node:16
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      PORT: ${PORT}
+      DB_URI: ${DB_URI}
+      TEST_DB_URI: ${TEST_DB_URI}
+      ACCESS_TOKEN_SECRET: ${ACCESS_TOKEN_SECRET}
+      REFRESH_TOKEN_SECRET: ${REFRESH_TOKEN_SECRET}
+      ACCESS_TOKEN_EXPIRATION: ${ACCESS_TOKEN_EXPIRATION}
+      REFRESH_TOKEN_EXPIRATION: ${REFRESH_TOKEN_EXPIRATION}
+      BCRYPT_SALT_ROUNDS: ${BCRYPT_SALT_ROUNDS}
+      THROTTLER_TTL: ${THROTTLER_TTL}
+      THROTTLER_LIMIT: ${THROTTLER_LIMIT}
+    ports:
+      - ${PORT}:${PORT}
+    tty: true
+    working_dir: /stefan/src/app
+    command: >
+      bash -c "npx nestjs-command db:seed:all;
+      npm run build;
+      node dist/main.js;"
