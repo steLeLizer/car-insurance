@@ -50,7 +50,7 @@ docker-compose up -d
 
 * Run backend tests
     * Note: In order to run tests, you will need to install Node.js on your machine
-    * Note: For manual testing, swagger route - /api
+    * Note: For manual testing, Swagger route - /api
 
 ```
 cd backend/
