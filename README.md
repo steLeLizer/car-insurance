@@ -26,7 +26,7 @@ There are four steps:
 
 ### Executing the app
 
-* .env file content example for running the backend locally:
+* .env file content example for running backend locally:
     * PORT=3001
     * DB_URI='mongodb://car_insurance_database/car-insurance'
     * TEST_DB_URI='mongodb://localhost/car-insurance-test'
@@ -40,7 +40,7 @@ There are four steps:
 
 #### Commands
 
-* Run the backend
+* Run backend
 
 ```
 cd backend/
