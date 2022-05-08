@@ -49,7 +49,7 @@ docker-compose up -d
 ```
 
 * Run backend tests
-    * Note: In order to run tests, you will need to install Node.js and MongoDB on your machine
+    * Note: In order to run tests, you will need to install Node.js on your machine
     * Note: For manual testing, swagger route - /api
 
 ```
