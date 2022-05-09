@@ -12,7 +12,7 @@ export class RuleSeeder {
     describe: 'seed rules',
   })
   async create() {
-    await this.ruleService.cleanDatabase();
+    await this.ruleService.deleteAllRules();
     await this.ruleService.createRule({
       type: RuleTypeEnum.Car,
       priceMin: 5000,

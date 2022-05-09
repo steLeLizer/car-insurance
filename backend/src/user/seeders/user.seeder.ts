@@ -15,7 +15,7 @@ export class UserSeeder {
     describe: 'seed users',
   })
   async create() {
-    await this.userService.cleanDatabase();
+    await this.userService.deleteAllUsers();
 
     const password = await this.authenticationService.hashData('Ninja');
 

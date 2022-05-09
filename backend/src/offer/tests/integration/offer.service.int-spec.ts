@@ -59,8 +59,8 @@ describe('Car Insurance Offer Calculation', () => {
     carService = moduleRef.get(CarService);
     offerService = moduleRef.get(OfferService);
 
-    await carService.cleanDatabase();
-    await ruleService.cleanDatabase();
+    await carService.deleteAllCars();
+    await ruleService.deleteAllRules();
 
     await carService.createCar(newCarMockData);
     await ruleService.createRule(newRuleMockData);
@@ -129,7 +129,7 @@ describe('Car Insurance Offer Calculation', () => {
       const car = newCarMockData;
       car.highRisk = true;
 
-      await carService.cleanDatabase();
+      await carService.deleteAllCars();
       await carService.createCar(car);
 
       try {

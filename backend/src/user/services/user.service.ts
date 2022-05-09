@@ -53,7 +53,7 @@ export class UserService {
     return this.userRepository.findOneAndUpdate({ userId }, userUpdates);
   }
 
-  async cleanDatabase() {
-    return this.userRepository.cleanDatabase();
+  async deleteAllUsers() {
+    return this.userRepository.cleanCollection();
   }
 }

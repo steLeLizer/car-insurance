@@ -43,7 +43,7 @@ export class RuleService {
     });
   }
 
-  async cleanDatabase() {
-    return this.ruleRepository.cleanDatabase();
+  async deleteAllRules() {
+    return this.ruleRepository.cleanCollection();
   }
 }

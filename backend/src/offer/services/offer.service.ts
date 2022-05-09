@@ -39,16 +39,13 @@ export class OfferService {
         'Sorry, we cannot accept this particular risk',
       );
 
-    return await this.computeCarInsuranceOffer(
-      car.price,
-      car.universalPercentage,
-    );
+    return this.computeCarInsuranceOffer(car.price, car.universalPercentage);
   }
 
-  async computeCarInsuranceOffer(
+  computeCarInsuranceOffer(
     carPrice: number,
     carUniversalPercentage: number,
-  ): Promise<CarInsuranceOfferResponseInterface> {
+  ): CarInsuranceOfferResponseInterface {
     let yearlyGlobalOffer = 0;
     let yearlyUniversalOffer = 0;
     let monthlyGlobalOffer = 0;

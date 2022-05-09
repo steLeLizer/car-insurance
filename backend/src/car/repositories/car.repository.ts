@@ -21,7 +21,7 @@ export class CarRepository {
     return newCar.save();
   }
 
-  async cleanDatabase() {
+  async cleanCollection() {
     return this.carModel.deleteMany();
   }
 }

@@ -28,7 +28,7 @@ export class RuleRepository {
     return this.ruleModel.findOneAndUpdate(ruleFilterQuery, rule);
   }
 
-  async cleanDatabase() {
+  async cleanCollection() {
     return this.ruleModel.deleteMany();
   }
 }

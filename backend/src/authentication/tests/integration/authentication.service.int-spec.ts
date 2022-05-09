@@ -31,7 +31,7 @@ describe('Authentication Flow', () => {
 
     userService = moduleRef.get(UserService);
     authService = moduleRef.get(AuthenticationService);
-    await userService.cleanDatabase();
+    await userService.deleteAllUsers();
   });
 
   afterAll(async () => {

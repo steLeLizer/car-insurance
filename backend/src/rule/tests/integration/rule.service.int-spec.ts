@@ -29,7 +29,7 @@ describe('RuleService Int', () => {
     }).compile();
 
     ruleService = moduleRef.get(RuleService);
-    await ruleService.cleanDatabase();
+    await ruleService.deleteAllRules();
   });
 
   afterAll(async () => {

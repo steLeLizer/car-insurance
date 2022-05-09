@@ -44,7 +44,7 @@ export class CarService {
     });
   }
 
-  async cleanDatabase() {
-    return this.carRepository.cleanDatabase();
+  async deleteAllCars() {
+    return this.carRepository.cleanCollection();
   }
 }

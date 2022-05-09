@@ -30,8 +30,8 @@ There are four steps:
     * PORT=3001
     * DB_URI='mongodb://car_insurance_database/car-insurance'
     * TEST_DB_URI='mongodb://localhost/car-insurance-test'
-    * ACCESS_TOKEN_SECRET='accessTokenSecret123$'
-    * REFRESH_TOKEN_SECRET='refreshTokenSecret123$'
+    * ACCESS_TOKEN_SECRET='xxxxxxx'
+    * REFRESH_TOKEN_SECRET='xxxxxxxx'
     * ACCESS_TOKEN_EXPIRATION='12h'
     * REFRESH_TOKEN_EXPIRATION='1d'
     * BCRYPT_SALT_ROUNDS=10

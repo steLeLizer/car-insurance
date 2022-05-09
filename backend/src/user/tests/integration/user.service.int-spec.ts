@@ -29,7 +29,7 @@ describe('UserService Int', () => {
     }).compile();
 
     userService = moduleRef.get(UserService);
-    await userService.cleanDatabase();
+    await userService.deleteAllUsers();
   });
 
   afterAll(async () => {

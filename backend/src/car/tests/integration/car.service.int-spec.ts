@@ -27,7 +27,7 @@ describe('CarService Int', () => {
     }).compile();
 
     carService = moduleRef.get(CarService);
-    await carService.cleanDatabase();
+    await carService.deleteAllCars();
   });
 
   afterAll(async () => {

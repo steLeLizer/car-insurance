@@ -11,7 +11,7 @@ export class CarSeeder {
     describe: 'seed cars',
   })
   async create() {
-    await this.carService.cleanDatabase();
+    await this.carService.deleteAllCars();
     await this.carService.createCar({
       name: 'AUDI',
       price: 250,
