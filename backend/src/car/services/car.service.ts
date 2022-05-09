@@ -45,6 +45,6 @@ export class CarService {
   }
 
   async deleteAllCars() {
-    return this.carRepository.cleanCollection();
+    return this.carRepository.deleteAll();
   }
 }

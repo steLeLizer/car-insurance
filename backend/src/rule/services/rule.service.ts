@@ -44,6 +44,6 @@ export class RuleService {
   }
 
   async deleteAllRules() {
-    return this.ruleRepository.cleanCollection();
+    return this.ruleRepository.deleteAll();
   }
 }

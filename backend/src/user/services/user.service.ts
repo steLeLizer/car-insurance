@@ -54,6 +54,6 @@ export class UserService {
   }
 
   async deleteAllUsers() {
-    return this.userRepository.cleanCollection();
+    return this.userRepository.deleteAll();
   }
 }

@@ -28,7 +28,7 @@ export class UserRepository {
     return this.userModel.findOneAndUpdate(userFilterQuery, user);
   }
 
-  async cleanCollection() {
+  async deleteAll() {
     return this.userModel.deleteMany();
   }
 }
