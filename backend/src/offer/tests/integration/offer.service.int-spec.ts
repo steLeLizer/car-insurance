@@ -13,14 +13,14 @@ import { RuleTypeEnum } from '../../../rule/enums';
 import { CarInsuranceOfferRequestDto } from '../../dtos';
 
 const computeCarInsuranceOfferMockData = {
-  carPrice: 300,
-  carUniversalPercentage: 0.5,
+  carPrice: 1500,
+  carUniversalPercentage: 0.7,
 };
 
 const newCarMockData: CreateCarInterface = {
   name: 'VOLKSWAGEN',
-  price: 300,
-  universalPercentage: 0.5,
+  price: 1500,
+  universalPercentage: 0.7,
   highRisk: false,
 };
 
@@ -77,10 +77,10 @@ describe('Car Insurance Offer Calculation', () => {
         computeCarInsuranceOfferMockData.carUniversalPercentage,
       );
 
-      expect(result.yearly.globalOffer).toEqual(300);
-      expect(result.yearly.universalOffer).toEqual(450);
-      expect(result.monthly.globalOffer).toEqual(25);
-      expect(result.monthly.universalOffer).toEqual(37.5);
+      expect(result.yearly.globalOffer).toEqual('1.500,00');
+      expect(result.yearly.universalOffer).toEqual('2.550,00');
+      expect(result.monthly.globalOffer).toEqual('125,00');
+      expect(result.monthly.universalOffer).toEqual('212,50');
     });
   });
 
@@ -151,10 +151,10 @@ describe('Car Insurance Offer Calculation', () => {
         newCarInsuranceOfferMockData,
       );
 
-      expect(result.yearly.globalOffer).toEqual(300);
-      expect(result.yearly.universalOffer).toEqual(450);
-      expect(result.monthly.globalOffer).toEqual(25);
-      expect(result.monthly.universalOffer).toEqual(37.5);
+      expect(result.yearly.globalOffer).toEqual('1.500,00');
+      expect(result.yearly.universalOffer).toEqual('2.550,00');
+      expect(result.monthly.globalOffer).toEqual('125,00');
+      expect(result.monthly.universalOffer).toEqual('212,50');
     });
   });
 });

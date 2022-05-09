@@ -1,4 +1,4 @@
 export interface MonthlyYearlyCarInsuranceOfferInterface {
-  globalOffer: number;
-  universalOffer: number;
+  globalOffer: string;
+  universalOffer: string;
 }

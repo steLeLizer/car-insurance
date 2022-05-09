@@ -59,12 +59,24 @@ export class OfferService {
 
     return {
       yearly: {
-        globalOffer: Number(yearlyGlobalOffer.toFixed(2)),
-        universalOffer: Number(yearlyUniversalOffer.toFixed(2)),
+        globalOffer: Number(yearlyGlobalOffer.toFixed(2)).toLocaleString(
+          'de-DE',
+          { maximumFractionDigits: 3, minimumFractionDigits: 2 },
+        ),
+        universalOffer: Number(yearlyUniversalOffer.toFixed(2)).toLocaleString(
+          'de-DE',
+          { maximumFractionDigits: 3, minimumFractionDigits: 2 },
+        ),
       },
       monthly: {
-        globalOffer: Number(monthlyGlobalOffer.toFixed(2)),
-        universalOffer: Number(monthlyUniversalOffer.toFixed(2)),
+        globalOffer: Number(monthlyGlobalOffer.toFixed(2)).toLocaleString(
+          'de-DE',
+          { maximumFractionDigits: 3, minimumFractionDigits: 2 },
+        ),
+        universalOffer: Number(monthlyUniversalOffer.toFixed(2)).toLocaleString(
+          'de-DE',
+          { maximumFractionDigits: 3, minimumFractionDigits: 2 },
+        ),
       },
     };
   }
