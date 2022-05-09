@@ -17,7 +17,7 @@ There are four steps:
 
 * Docker
   [@Get Docker](https://docs.docker.com/get-docker/)
-  * Note: If you get this error message: Version "4" in ".\docker-compose.yml" is invalid
+  * Note: If you already have Docker installed and if you are getting this error message: Version "4" in ".\docker-compose.yml" is invalid
     * Simply change the value to your installed version of Docker, at "backend/docker-compose.yml", line 1 (i.e., version: '3')
 
 [comment]: <> (### Installing)
