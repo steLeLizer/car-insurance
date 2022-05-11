@@ -15,12 +15,12 @@ There are four steps:
 
 ### Dependencies
 
+* Node.js
+  [@Get Node.js](https://nodejs.org/en/)
 * Docker
   [@Get Docker](https://docs.docker.com/get-docker/)
   * Note: If you already have Docker installed and if you are getting this error message: Version "4" in ".\docker-compose.yml" is invalid
     * Simply change the value to your installed version of Docker, at "backend/docker-compose.yml", line 1 (i.e., version: '3')
-* Node.js
-  [@Get Node.js](https://nodejs.org/en/)
 
 [comment]: <> (### Installing)
 
