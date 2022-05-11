@@ -17,6 +17,7 @@ There are four steps:
 
 * Docker
   [@Get Docker](https://docs.docker.com/get-docker/)
+  [@Get Node.js](https://nodejs.org/en/)
   * Note: If you already have Docker installed and if you are getting this error message: Version "4" in ".\docker-compose.yml" is invalid
     * Simply change the value to your installed version of Docker, at "backend/docker-compose.yml", line 1 (i.e., version: '3')
 
@@ -54,12 +55,10 @@ docker-compose up -d
 
 ```
 cd frontend/
-docker-compose build
-docker-compose up -d
+npm start
 ```
 
 * Run backend tests
-    * Note: In order to run tests, you will need to install Node.js on your machine
     * Note: For manual testing, Swagger route - /api
 
 ```
