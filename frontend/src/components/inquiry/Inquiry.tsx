@@ -31,6 +31,10 @@ const Inquiry: FunctionComponent = () => {
       })
       .catch((reason) => {
         console.log(reason);
+        if (reason.response.status === 401) {
+          window.localStorage.clear();
+          navigate("/login");
+        }
       }).finally(() => setCarsLoading(false));
 
     return () => {
@@ -80,6 +84,10 @@ const Inquiry: FunctionComponent = () => {
           }
         })
         .catch((reason) => {
+          if (reason.response.status === 401) {
+            window.localStorage.clear();
+            navigate("/login");
+          }
 
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           setError(reason?.response.data.message || "Error occurred");
@@ -107,7 +115,6 @@ const Inquiry: FunctionComponent = () => {
               <input
                 type="number"
                 id="driverAge"
-                min={18}
                 step={1}
                 className="border border-t-0 cursor-text border-l-0 border-r-0 px-3 py-2 mt-1 mb-1 text-sm w-full peer"
                 data-bs-toggle="tooltip"
@@ -119,6 +126,9 @@ const Inquiry: FunctionComponent = () => {
                 }}
                 required
               />
+              <span className="text-red-600 text-sm peer-invalid:visible">
+                {error.includes("driver") ? error : ""}
+              </span>
               <span className="text-red-600 text-sm peer-invalid:visible">
                 {error.includes("risk") ? error : ""}
               </span>
