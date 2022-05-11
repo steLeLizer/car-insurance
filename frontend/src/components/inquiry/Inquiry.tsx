@@ -135,6 +135,7 @@ const Inquiry: FunctionComponent = () => {
                 Car
               </label>
               <select
+                required
                 disabled={!cars?.length}
                 id="car"
                 value={carName}
@@ -149,9 +150,6 @@ const Inquiry: FunctionComponent = () => {
                   </option>
                 ))}
               </select>
-              <span className="text-red-600 text-sm">
-                {error.includes("manufacturer") ? error : ""}
-              </span>
               <label
                 htmlFor="purchasePrice"
                 className="font-semibold text-sm text-gray-500 mt-3 pb-1 block"
