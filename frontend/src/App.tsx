@@ -20,7 +20,8 @@ const App = () => {
             </Route>
           </Routes>
           <footer>
-            <p className="footer bg-white relative pt-1 border-b-2 border-blue-700 text-center bg-gradient-to-tr font-normal from-blue-600 to-cyan-300 p-8 shadow text-white">
+            <p
+              className="footer bg-white relative pt-1 border-b-2 border-blue-700 text-center bg-gradient-to-tr font-normal from-blue-600 to-cyan-300 p-8 shadow text-white">
               ® Qover {new Date().getFullYear()}
             </p>
           </footer>

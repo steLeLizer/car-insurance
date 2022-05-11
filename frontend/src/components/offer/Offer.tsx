@@ -86,7 +86,8 @@ const Offer: FunctionComponent = () => {
               <span className="text-primary text-center font-semibold text-2xl block mb-4">
                 Global
               </span>
-              <h2 className="font-bold bg-cyan-300 text-center p-4 rounded-tl-full rounded-br-full text-dark mb-5 text-[42px]">
+              <h2
+                className="font-bold bg-cyan-300 text-center p-4 rounded-tl-full rounded-br-full text-dark mb-5 text-[42px]">
                 {!isMonthly
                   ? searchParams.get("yearly-global")
                   : searchParams.get("monthly-global")}{" "}
@@ -169,7 +170,8 @@ const Offer: FunctionComponent = () => {
               <span className="text-primary text-center font-semibold text-2xl block mb-4">
                 Universal
               </span>
-              <h2 className="font-bold text-cyan-600 bg-cyan-100 text-center p-4 rounded-tr-full rounded-bl-full text-dark mb-5 text-[42px]">
+              <h2
+                className="font-bold text-cyan-600 bg-cyan-100 text-center p-4 rounded-tr-full rounded-bl-full text-dark mb-5 text-[42px]">
                 {!isMonthly
                   ? searchParams.get("yearly-universal")
                   : searchParams.get("monthly-universal")}{" "}

@@ -10,7 +10,8 @@ const NotFound: FunctionComponent = () => {
         src={wrongWay}
         alt="Wrong way"
       />
-      <button className="transition ease-in-out ml-8 delay-150 p-3 rounded-md drop-shadow-xl bg-white text-blue-500 text-lg hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 hover:text-white duration-300">
+      <button
+        className="transition ease-in-out ml-8 delay-150 p-3 rounded-md drop-shadow-xl bg-white text-blue-500 text-lg hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 hover:text-white duration-300">
         <Link to="/">Go back home</Link>
       </button>
     </div>

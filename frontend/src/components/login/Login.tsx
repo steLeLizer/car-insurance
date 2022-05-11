@@ -20,10 +20,10 @@ const Login: FunctionComponent = () => {
 
   const handleLogin = () => {
     axios
-      .post<LoginProps>(`http://localhost:3001/authentication/login` || '', {
+      .post<LoginProps>(`http://localhost:3001/authentication/login` || "", {
         email,
         password,
-        rememberMe,
+        rememberMe
       })
       .then((response) => {
         setLoginStatus("");
@@ -92,7 +92,8 @@ const Login: FunctionComponent = () => {
               <div className="py-5">
                 <div className="grid grid-cols-2 gap-1">
                   <div className="text-center sm:text-left whitespace-nowrap">
-                    <div className="transition duration-200 py-4 font-normal text-sm rounded-lg text-gray-500 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                    <div
+                      className="transition duration-200 py-4 font-normal text-sm rounded-lg text-gray-500 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
                       <span>
                         <input
                           type="checkbox"
@@ -104,7 +105,8 @@ const Login: FunctionComponent = () => {
                     </div>
                   </div>
                   <div className="text-center sm:text-right  whitespace-nowrap">
-                    <div className="transition duration-200 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:text-blue-500 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
+                    <div
+                      className="transition duration-200 py-4 cursor-pointer font-normal text-sm rounded-lg text-gray-500 hover:text-blue-500 focus:outline-none focus:bg-gray-200 focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50 ring-inset">
                       <span className="inline-block ml-1">
                         Forgot your password?
                       </span>
@@ -124,7 +126,8 @@ const Login: FunctionComponent = () => {
         <div className="py-5">
           <div>
             <div className="text-center sm:text-left whitespace-nowrap">
-              <button className="border transition duration-200 mx-auto px-5 py-4 cursor-pointer font-normal text-sm rounded-sm text-white hover:bg-blue-200 hover:text-blue-500 focus:outline-none focus:bg-blue-300 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 ring-inset">
+              <button
+                className="border transition duration-200 mx-auto px-5 py-4 cursor-pointer font-normal text-sm rounded-sm text-white hover:bg-blue-200 hover:text-blue-500 focus:outline-none focus:bg-blue-300 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 ring-inset">
                 <span className="inline-block mx-11">
                   Dont have an account?
                   <u>
