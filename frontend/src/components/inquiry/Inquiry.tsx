@@ -77,10 +77,6 @@ const Inquiry: FunctionComponent = () => {
               }).toString()}`
             });
             setError("");
-          } else if (response.status === 409) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-            setError(response.data.message || "");
-            console.log("test");
           }
         })
         .catch((reason) => {
